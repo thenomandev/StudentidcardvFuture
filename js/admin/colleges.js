@@ -8,6 +8,7 @@ setDoc,
 deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
+
 const collegeSelect=document.getElementById("collegeSelect");
 
 window.allColleges={};
@@ -43,6 +44,10 @@ document.getElementById("transparentLogo").value=data.transparentLogo || "";
 document.getElementById("whiteLogo").value=data.whiteLogo || "";
 document.getElementById("principalSignature").value=data.principalSignature || "";
 document.getElementById("watermark").value=data.watermark || "";
+restoreUploadPreview("transparentLogo",data.transparentLogo || "");
+restoreUploadPreview("whiteLogo",data.whiteLogo || "");
+restoreUploadPreview("principalSignature",data.principalSignature || "");
+restoreUploadPreview("watermark",data.watermark || "");
 document.getElementById("website").value=data.website || "";
 document.getElementById("email").value=data.email || "";
 document.getElementById("phone").value=data.phone || "";

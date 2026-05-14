@@ -7,6 +7,7 @@ deleteObject
 } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-storage.js";
 
 const MAX_SIZE = 5 * 1024 * 1024;
+
 const ALLOWED_TYPES = [
 "image/png",
 "image/jpeg",
@@ -22,7 +23,6 @@ const uploadFields = [
 
 function validateFile(file){
 if(!file){
-alert("No file selected");
 return false;
 }
 
@@ -43,69 +43,102 @@ async function removeOldFile(url){
 if(!url) return;
 
 try{
-const oldRef = ref(storage, url);
+const oldRef = ref(
+storage,
+decodeURIComponent(url.split("/o/")[1].split("?")[0])
+);
 await deleteObject(oldRef);
 }catch(err){
-console.log("Old file delete skipped");
+console.log("Old delete skipped");
 }
+}
+
+function getCard(field){
+return document.querySelector(`[data-field="${field}"]`);
+}
+
+function showUI(field,url){
+const preview=document.getElementById(field+"Preview");
+const actions=getCard(field).querySelector(".upload-actions");
+
+preview.src=url;
+preview.style.display="block";
+actions.style.display="flex";
+}
+
+function hideUI(field){
+const preview=document.getElementById(field+"Preview");
+const actions=getCard(field).querySelector(".upload-actions");
+const progress=document.getElementById(field+"Progress");
+
+preview.src="";
+preview.style.display="none";
+actions.style.display="none";
+progress.style.display="none";
+progress.value=0;
 }
 
 async function uploadFile(field,file){
 if(!validateFile(file)) return;
 
-const progressBar = document.getElementById(field + "Progress");
-const hiddenInput = document.getElementById(field);
-const preview = document.getElementById(field + "Preview");
+const progress=document.getElementById(field+"Progress");
+const hiddenInput=document.getElementById(field);
+
+progress.style.display="block";
 
 await removeOldFile(hiddenInput.value);
 
-const fileName = `${field}_${Date.now()}_${file.name}`;
-const storageRef = ref(storage, "college-assets/" + fileName);
+const fileName=`${field}_${Date.now()}_${file.name}`;
+const storageRef=ref(storage,"college-assets/"+fileName);
 
-const task = uploadBytesResumable(storageRef,file);
+const task=uploadBytesResumable(storageRef,file);
 
 task.on(
 "state_changed",
 (snapshot)=>{
-const percent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-progressBar.value = percent;
+const percent=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+progress.value=percent;
 },
 (error)=>{
 alert(error.message);
 },
 async ()=>{
-const url = await getDownloadURL(task.snapshot.ref);
+const url=await getDownloadURL(task.snapshot.ref);
 
-hiddenInput.value = url;
-preview.src = url;
-preview.style.display = "block";
-progressBar.value = 100;
+hiddenInput.value=url;
+showUI(field,url);
 }
 );
 }
 
 uploadFields.forEach((field)=>{
-const fileInput = document.getElementById(field + "File");
+const input=document.getElementById(field+"File");
 
-if(fileInput){
-fileInput.addEventListener("change",(e)=>{
-const file = e.target.files[0];
+if(input){
+input.addEventListener("change",(e)=>{
+const file=e.target.files[0];
 uploadFile(field,file);
 });
 }
 });
 
-window.deleteUploadedImage = async function(field){
-const hiddenInput = document.getElementById(field);
-const preview = document.getElementById(field + "Preview");
-const progressBar = document.getElementById(field + "Progress");
+window.triggerUpload=function(field){
+document.getElementById(field+"File").click();
+};
+
+window.deleteUploadedImage=async function(field){
+const hiddenInput=document.getElementById(field);
 
 if(hiddenInput.value){
 await removeOldFile(hiddenInput.value);
 }
 
-hiddenInput.value = "";
-preview.src = "";
-preview.style.display = "none";
-progressBar.value = 0;
+hiddenInput.value="";
+hideUI(field);
+};
+
+window.restoreUploadPreview=function(field,url){
+if(url){
+showUI(field,url);
+}
 };
