@@ -86,7 +86,7 @@ if(!id || !name) return alert("Fill fields");
 
 await setDoc(doc(db,"colleges",id),{
 collegeNameEn:name,
-collegeNameBn:name,
+collegeNameBn:"",
 established:"",
 transparentLogo:"",
 whiteLogo:"",
@@ -108,9 +108,11 @@ const id=collegeSelect.dataset.selectedId || collegeSelect.value;
 
 if(!id) return;
 
+if(!confirm("Delete this college permanently?")) return;
+
 await deleteDoc(doc(db,"colleges",id));
 
-alert("Deleted");
+alert("Deleted successfully");
 
 await loadColleges();
 };

@@ -12,6 +12,12 @@ onAuthStateChanged(auth,(user)=>{
 if(!user){
 goLogin();
 }else{
+if(user.email !== "thenomandev@gmail.com"){
+alert("Unauthorized access");
+signOut(auth);
+return;
+}
+
 document.body.style.display="block";
 }
 });
