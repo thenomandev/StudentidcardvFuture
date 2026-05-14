@@ -42,6 +42,7 @@ document.getElementById("established").value=data.established || "";
 document.getElementById("transparentLogo").value=data.transparentLogo || "";
 document.getElementById("whiteLogo").value=data.whiteLogo || "";
 document.getElementById("principalSignature").value=data.principalSignature || "";
+document.getElementById("watermark").value=data.watermark || "";
 document.getElementById("website").value=data.website || "";
 document.getElementById("email").value=data.email || "";
 document.getElementById("phone").value=data.phone || "";
@@ -60,6 +61,7 @@ established:document.getElementById("established").value,
 transparentLogo:document.getElementById("transparentLogo").value,
 whiteLogo:document.getElementById("whiteLogo").value,
 principalSignature:document.getElementById("principalSignature").value,
+watermark:document.getElementById("watermark").value,
 website:document.getElementById("website").value,
 email:document.getElementById("email").value,
 phone:document.getElementById("phone").value,
@@ -84,6 +86,7 @@ established:"",
 transparentLogo:"",
 whiteLogo:"",
 principalSignature:"",
+watermark:"",
 website:"",
 email:"",
 phone:"",
