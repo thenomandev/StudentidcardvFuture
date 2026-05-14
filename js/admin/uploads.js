@@ -1,3 +1,4 @@
+import { showToast } from "../ui/notifications.js";
 const CLOUD_NAME = "dvaua0cyk";
 const UPLOAD_PRESET = "student_id_uploads";
 
@@ -20,12 +21,12 @@ function validateFile(file){
   if(!file) return false;
 
   if(!ALLOWED_TYPES.includes(file.type)){
-    alert("Only PNG / JPG / WebP allowed");
+    showToast("Only PNG, JPG or WebP images allowed", "warning");
     return false;
   }
 
   if(file.size > MAX_SIZE){
-    alert("Max file size is 5MB");
+    showToast("Maximum file size is 5MB", "warning");
     return false;
   }
 
@@ -92,7 +93,7 @@ async function uploadFile(field,file){
     showUI(field,data.secure_url);
 
   }catch(err){
-    alert(err.message);
+    showToast("Image upload failed", "error");
     progress.style.display="none";
   }
 }

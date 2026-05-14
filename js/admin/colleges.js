@@ -1,4 +1,5 @@
 import { db } from "../../firebase-config.js";
+import { showToast, showConfirm } from "../ui/notifications.js";
 import {
 collection,
 getDocs,
@@ -57,7 +58,7 @@ document.getElementById("address").value=data.address || "";
 window.saveCollege=async function(){
 const id=collegeSelect.dataset.selectedId || collegeSelect.value;
 
-if(!id) return alert("Select college");
+if(!id) return showToast("Please select a college", "warning");
 
 await setDoc(doc(db,"colleges",id),{
 collegeNameBn:document.getElementById("collegeNameBn").value,
@@ -73,7 +74,7 @@ phone:document.getElementById("phone").value,
 address:document.getElementById("address").value
 });
 
-alert("Saved successfully");
+showToast("College saved successfully", "success");
 
 await loadColleges();
 };
@@ -82,7 +83,7 @@ window.addCollege=async function(){
 const id=document.getElementById("newCollegeId").value.trim();
 const name=document.getElementById("newCollegeName").value.trim();
 
-if(!id || !name) return alert("Fill fields");
+if(!id || !name) return showToast("Please fill required fields", "warning");
 
 await setDoc(doc(db,"colleges",id),{
 collegeNameEn:name,
@@ -98,7 +99,7 @@ phone:"",
 address:""
 });
 
-alert("College added");
+showToast("New college added", "success");
 
 await loadColleges();
 };
@@ -108,11 +109,16 @@ const id=collegeSelect.dataset.selectedId || collegeSelect.value;
 
 if(!id) return;
 
-if(!confirm("Delete this college permanently?")) return;
+const confirmed = await showConfirm(
+  "Delete College?",
+  "This college will be permanently deleted and cannot be recovered."
+);
+
+if (!confirmed) return;
 
 await deleteDoc(doc(db,"colleges",id));
 
-alert("Deleted successfully");
+showToast("College deleted", "warning");
 
 await loadColleges();
 };
