@@ -18,6 +18,8 @@ established:data.established || "",
 phone:data.phone || "",
 email:data.email || "",
 website:data.website || "",
+address:data.address || "",
+watermark:data.watermark || "",
 logo:data.whiteLogo || "",
 transparentLogo:data.transparentLogo || "",
 signature:data.principalSignature || ""
