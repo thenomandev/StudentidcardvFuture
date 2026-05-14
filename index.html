@@ -505,6 +505,17 @@ logoMode==="transparent"
 
 document.getElementById("principalSignature").src=college.signature;
 
+const cards=document.querySelectorAll(".id-card");
+
+cards.forEach(card=>{
+card.style.backgroundImage = college.watermark
+? `url(${college.watermark})`
+: "none";
+
+card.style.backgroundSize = "cover";
+card.style.backgroundPosition = "center";
+});
+
 updateCard();
 }
 
@@ -586,15 +597,14 @@ document.getElementById("studentMother").innerText=mother;
 document.getElementById("studentAddress").innerText=address;
 document.getElementById("studentBlood").innerText="ব্লাড গ্রুপ: "+blood;
 
-document.querySelector(".header-text h1").innerText=
-collegeBangla || "বরিশাল সরকারি কলেজ, বরিশাল";
+document.querySelector(".header-text h1").innerText=collegeBangla;
 
-document.querySelector(".header-text p").innerText=
-collegeEnglish || "Barishal Govt. College, Barishal";
+document.querySelector(".header-text p").innerText=collegeEnglish;
 
 document.querySelector(".estd").innerText=
-collegeEst ? "স্থাপিত: "+collegeEst+" খ্রি." : "স্থাপিত: ১৯৬৩ খ্রি.";
-document.querySelector(".college h2").innerText=collegeBangla || "বরিশাল সরকারি কলেজ, বরিশাল";
+collegeEst ? "স্থাপিত: "+collegeEst+" খ্রি." : "";
+
+document.querySelector(".college h2").innerText=collegeBangla;
 document.querySelectorAll(".college p")[0].innerText="ফোন: "+collegePhone;
 document.querySelectorAll(".college p")[1].innerText="ই-মেইল: "+collegeEmail;
 document.querySelector(".footer").innerText="ওয়েবসাইট: "+collegeWebsite;
