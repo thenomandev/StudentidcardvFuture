@@ -36,43 +36,104 @@ oninput="filterAdminCollegeList()"
 <input id="collegeNameEn" placeholder="College Name English">
 <input id="established" placeholder="Established">
 <div class="upload-section">
+<div class="upload-grid">
 
+<div class="upload-card" data-field="transparentLogo">
 <h4>Transparent Logo</h4>
-<div class="upload-box">
-<input type="file" id="transparentLogoFile" accept=".png,.jpg,.jpeg,.webp">
+
+<label class="upload-drop" for="transparentLogoFile">
+<div class="upload-icon">🖼</div>
+<div class="upload-title">Tap to Upload</div>
+<div class="upload-sub">PNG / JPG / WebP • Max 5MB</div>
+</label>
+
+<input type="file" id="transparentLogoFile" accept=".png,.jpg,.jpeg,.webp" hidden>
+
 <progress id="transparentLogoProgress" value="0" max="100"></progress>
-<img id="transparentLogoPreview" class="upload-preview" style="display:none;">
+
+<img id="transparentLogoPreview" class="upload-preview">
+
+<div class="upload-actions">
+<button type="button" class="replaceBtn" onclick="triggerUpload('transparentLogo')">Replace</button>
+<button type="button" class="removeBtn" onclick="deleteUploadedImage('transparentLogo')">Remove</button>
+</div>
+
 <input id="transparentLogo" type="hidden">
-<button type="button" class="deleteBtn" onclick="deleteUploadedImage('transparentLogo')">Delete Image</button>
 </div>
 
+
+<div class="upload-card" data-field="whiteLogo">
 <h4>White Box Logo</h4>
-<div class="upload-box">
-<input type="file" id="whiteLogoFile" accept=".png,.jpg,.jpeg,.webp">
+
+<label class="upload-drop" for="whiteLogoFile">
+<div class="upload-icon">🖼</div>
+<div class="upload-title">Tap to Upload</div>
+<div class="upload-sub">PNG / JPG / WebP • Max 5MB</div>
+</label>
+
+<input type="file" id="whiteLogoFile" accept=".png,.jpg,.jpeg,.webp" hidden>
+
 <progress id="whiteLogoProgress" value="0" max="100"></progress>
-<img id="whiteLogoPreview" class="upload-preview" style="display:none;">
+
+<img id="whiteLogoPreview" class="upload-preview">
+
+<div class="upload-actions">
+<button type="button" class="replaceBtn" onclick="triggerUpload('whiteLogo')">Replace</button>
+<button type="button" class="removeBtn" onclick="deleteUploadedImage('whiteLogo')">Remove</button>
+</div>
+
 <input id="whiteLogo" type="hidden">
-<button type="button" class="deleteBtn" onclick="deleteUploadedImage('whiteLogo')">Delete Image</button>
 </div>
 
+
+<div class="upload-card" data-field="principalSignature">
 <h4>Principal Signature</h4>
-<div class="upload-box">
-<input type="file" id="principalSignatureFile" accept=".png,.jpg,.jpeg,.webp">
+
+<label class="upload-drop" for="principalSignatureFile">
+<div class="upload-icon">✍️</div>
+<div class="upload-title">Tap to Upload</div>
+<div class="upload-sub">PNG / JPG / WebP • Max 5MB</div>
+</label>
+
+<input type="file" id="principalSignatureFile" accept=".png,.jpg,.jpeg,.webp" hidden>
+
 <progress id="principalSignatureProgress" value="0" max="100"></progress>
-<img id="principalSignaturePreview" class="upload-preview" style="display:none;">
+
+<img id="principalSignaturePreview" class="upload-preview">
+
+<div class="upload-actions">
+<button type="button" class="replaceBtn" onclick="triggerUpload('principalSignature')">Replace</button>
+<button type="button" class="removeBtn" onclick="deleteUploadedImage('principalSignature')">Remove</button>
+</div>
+
 <input id="principalSignature" type="hidden">
-<button type="button" class="deleteBtn" onclick="deleteUploadedImage('principalSignature')">Delete Image</button>
 </div>
 
+
+<div class="upload-card" data-field="watermark">
 <h4>Watermark / Background</h4>
-<div class="upload-box">
-<input type="file" id="watermarkFile" accept=".png,.jpg,.jpeg,.webp">
+
+<label class="upload-drop" for="watermarkFile">
+<div class="upload-icon">🎨</div>
+<div class="upload-title">Tap to Upload</div>
+<div class="upload-sub">PNG / JPG / WebP • Max 5MB</div>
+</label>
+
+<input type="file" id="watermarkFile" accept=".png,.jpg,.jpeg,.webp" hidden>
+
 <progress id="watermarkProgress" value="0" max="100"></progress>
-<img id="watermarkPreview" class="upload-preview" style="display:none;">
-<input id="watermark" type="hidden">
-<button type="button" class="deleteBtn" onclick="deleteUploadedImage('watermark')">Delete Image</button>
+
+<img id="watermarkPreview" class="upload-preview">
+
+<div class="upload-actions">
+<button type="button" class="replaceBtn" onclick="triggerUpload('watermark')">Replace</button>
+<button type="button" class="removeBtn" onclick="deleteUploadedImage('watermark')">Remove</button>
 </div>
 
+<input id="watermark" type="hidden">
+</div>
+
+</div>
 </div>
 <input id="website" placeholder="Website">
 <input id="email" placeholder="Email">
