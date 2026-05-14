@@ -35,9 +35,45 @@ oninput="filterAdminCollegeList()"
 <input id="collegeNameBn" placeholder="College Name Bangla">
 <input id="collegeNameEn" placeholder="College Name English">
 <input id="established" placeholder="Established">
-<input id="transparentLogo" placeholder="Transparent Logo URL">
-<input id="whiteLogo" placeholder="White Box Logo URL">
-<input id="principalSignature" placeholder="Principal Signature URL">
+<div class="upload-section">
+
+<h4>Transparent Logo</h4>
+<div class="upload-box">
+<input type="file" id="transparentLogoFile" accept=".png,.jpg,.jpeg,.webp">
+<progress id="transparentLogoProgress" value="0" max="100"></progress>
+<img id="transparentLogoPreview" class="upload-preview" style="display:none;">
+<input id="transparentLogo" type="hidden">
+<button type="button" class="deleteBtn" onclick="deleteUploadedImage('transparentLogo')">Delete Image</button>
+</div>
+
+<h4>White Box Logo</h4>
+<div class="upload-box">
+<input type="file" id="whiteLogoFile" accept=".png,.jpg,.jpeg,.webp">
+<progress id="whiteLogoProgress" value="0" max="100"></progress>
+<img id="whiteLogoPreview" class="upload-preview" style="display:none;">
+<input id="whiteLogo" type="hidden">
+<button type="button" class="deleteBtn" onclick="deleteUploadedImage('whiteLogo')">Delete Image</button>
+</div>
+
+<h4>Principal Signature</h4>
+<div class="upload-box">
+<input type="file" id="principalSignatureFile" accept=".png,.jpg,.jpeg,.webp">
+<progress id="principalSignatureProgress" value="0" max="100"></progress>
+<img id="principalSignaturePreview" class="upload-preview" style="display:none;">
+<input id="principalSignature" type="hidden">
+<button type="button" class="deleteBtn" onclick="deleteUploadedImage('principalSignature')">Delete Image</button>
+</div>
+
+<h4>Watermark / Background</h4>
+<div class="upload-box">
+<input type="file" id="watermarkFile" accept=".png,.jpg,.jpeg,.webp">
+<progress id="watermarkProgress" value="0" max="100"></progress>
+<img id="watermarkPreview" class="upload-preview" style="display:none;">
+<input id="watermark" type="hidden">
+<button type="button" class="deleteBtn" onclick="deleteUploadedImage('watermark')">Delete Image</button>
+</div>
+
+</div>
 <input id="website" placeholder="Website">
 <input id="email" placeholder="Email">
 <input id="phone" placeholder="Phone">
