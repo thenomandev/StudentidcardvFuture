@@ -203,18 +203,48 @@ font-size:30px;
 <script type="module">
 import { auth } from "./firebase-config.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+import { showToast } from "./js/ui/notifications.js";
 
-window.login = async function(){
-const email=document.getElementById("email").value;
-const password=document.getElementById("password").value;
+window.login = async function () {
+  const email = document.getElementById("email");
+  const password = document.getElementById("password");
 
-try{
-await signInWithEmailAndPassword(auth,email,password);
-window.location.href="admin/index.html";
-}catch(err){
-alert(err.message);
-}
-}
+  email.style.borderColor = "";
+  password.style.borderColor = "";
+
+  if (!email.value.trim() || !password.value.trim()) {
+    showToast("Enter email and password", "warning");
+    if (!email.value.trim()) email.style.borderColor = "#ef4444";
+    if (!password.value.trim()) password.style.borderColor = "#ef4444";
+    return;
+  }
+
+  try {
+    await signInWithEmailAndPassword(
+      auth,
+      email.value.trim(),
+      password.value
+    );
+
+    showToast("Login successful", "success");
+
+    setTimeout(() => {
+      window.location.href = "admin/index.html";
+    }, 700);
+
+  } catch (err) {
+    email.style.borderColor = "#ef4444";
+    password.style.borderColor = "#ef4444";
+
+    if (err.code === "auth/invalid-credential") {
+      showToast("Incorrect email or password", "error");
+    } else if (err.code === "auth/too-many-requests") {
+      showToast("Too many attempts. Try later", "warning");
+    } else {
+      showToast("Login failed", "error");
+    }
+  }
+};
 </script>
 
 <script>
