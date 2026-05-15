@@ -134,10 +134,12 @@ z-index:5;
 }
 
 .logo img{
-width:140%;
-height:140%;
+width:100%;
+height:100%;
 object-fit:contain;
 display:block;
+transform:scale(0.88);
+transform-origin:center;
 }
 
 .logo.transparent{
