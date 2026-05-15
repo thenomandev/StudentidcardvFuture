@@ -319,7 +319,7 @@ margin:6px 0;
 #collegeSelect{
 appearance:none;
 -webkit-appearance:none;
-padding-right:42px;
+padding-right:24px;
 }
 
 #collegeSelect::-webkit-search-cancel-button{
