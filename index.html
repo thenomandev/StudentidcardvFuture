@@ -590,7 +590,19 @@ let mother=document.getElementById("motherInput").value;
 let address=document.getElementById("addressInput").value;
 let blood=document.getElementById("bloodInput").value;
 let qrText=document.getElementById("qrInput").value;
-
+const hasUserData =
+name ||
+roll ||
+studentClass ||
+subject ||
+session ||
+expiry ||
+mobile ||
+emergency ||
+father ||
+mother ||
+address ||
+blood;
 let collegeBangla=document.getElementById("collegeBanglaInput").value;
 let collegeEnglish=document.getElementById("collegeEnglishInput").value;
 let collegeEst=document.getElementById("collegeEstInput").value;
@@ -598,18 +610,20 @@ let collegePhone=document.getElementById("collegePhoneInput").value;
 let collegeEmail=document.getElementById("collegeEmailInput").value;
 let collegeWebsite=document.getElementById("collegeWebsiteInput").value;
 
-document.getElementById("studentName").innerText=name;
-document.getElementById("studentRoll").innerText=roll;
-document.getElementById("studentClass").innerText=studentClass;
-document.getElementById("studentSubject").innerText=subject;
-document.getElementById("studentSession").innerText=session;
-document.getElementById("studentExpiry").innerText=expiry;
-document.getElementById("studentMobile").innerText=mobile;
-document.getElementById("studentEmergency").innerText=emergency;
-document.getElementById("studentFather").innerText=father;
-document.getElementById("studentMother").innerText=mother;
-document.getElementById("studentAddress").innerText=address;
-document.getElementById("studentBlood").innerText="ব্লাড গ্রুপ: "+blood;
+if(hasUserData){
+document.getElementById("studentName").innerText=name || "আব্দুল্লাহ-আল নোমান";
+document.getElementById("studentRoll").innerText=roll || "১৯২৬১১১";
+document.getElementById("studentClass").innerText=studentClass || "স্নাতক (সম্মান)";
+document.getElementById("studentSubject").innerText=subject || "ব্যবস্থাপনা বিভাগ";
+document.getElementById("studentSession").innerText=session || "২০১৯-২০";
+document.getElementById("studentExpiry").innerText=expiry || "ডিসেম্বর ২০২৭";
+document.getElementById("studentMobile").innerText=mobile || "০১৯৩০-১১১১১১";
+document.getElementById("studentEmergency").innerText=emergency || "০১৭১০-২২২২২২";
+document.getElementById("studentFather").innerText=father || "মোঃ সফিউল আজম খান";
+document.getElementById("studentMother").innerText=mother || "মোসাঃ শাহনাজ পারভীন";
+document.getElementById("studentAddress").innerText=address || "রাজাপুর, ঝালকাঠি";
+document.getElementById("studentBlood").innerText="ব্লাড গ্রুপ: "+(blood || "B+");
+}
 
 document.querySelector(".header-text h1").innerText=
 collegeBangla || "বরিশাল সরকারি কলেজ, বরিশাল";
@@ -978,36 +992,10 @@ appData.settings.defaultTheme ||
 setTheme(rememberedTheme);
 
 loadDatabase(appData).then(()=>{
-
-const defaultCollege = appData.colleges["barishalgovtcollege"] || Object.values(appData.colleges)[0];
-
-if(defaultCollege){
-
-document.getElementById("collegeBanglaInput").value = defaultCollege.bangla || "";
-document.getElementById("collegeEnglishInput").value = defaultCollege.english || "";
-document.getElementById("collegeEstInput").value = defaultCollege.established || "";
-document.getElementById("collegePhoneInput").value = defaultCollege.phone || "";
-document.getElementById("collegeEmailInput").value = defaultCollege.email || "";
-document.getElementById("collegeWebsiteInput").value = defaultCollege.website || "";
-
-document.getElementById("collegeLogo").src =
-defaultCollege.transparentLogo || defaultCollege.logo || "";
-
-document.getElementById("principalSignature").src =
-defaultCollege.signature || "";
-
-const cards=document.querySelectorAll(".id-card");
-
-cards.forEach(card=>{
-card.style.backgroundImage = defaultCollege.watermark
-? `url(${defaultCollege.watermark})`
-: "none";
-});
-}
-
+if(document.getElementById("collegeSearch").value){
 updateLogoMode();
 updateCard();
-
+}
 });
 
 </script>
