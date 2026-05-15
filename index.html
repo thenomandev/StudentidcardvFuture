@@ -583,18 +583,22 @@ let collegePhone=document.getElementById("collegePhoneInput").value;
 let collegeEmail=document.getElementById("collegeEmailInput").value;
 let collegeWebsite=document.getElementById("collegeWebsiteInput").value;
 
-document.getElementById("studentName").innerText=name || "আব্দুল্লাহ-আল নোমান";
-document.getElementById("studentRoll").innerText=roll || "১৯২৬১১১";
-document.getElementById("studentClass").innerText=studentClass || "স্নাতক (সম্মান)";
-document.getElementById("studentSubject").innerText=subject || "ব্যবস্থাপনা বিভাগ";
-document.getElementById("studentSession").innerText=session || "২০১৯-২০";
-document.getElementById("studentExpiry").innerText=expiry || "ডিসেম্বর ২০২৭";
-document.getElementById("studentMobile").innerText=mobile || "০১৯৩০-১১১১১১";
-document.getElementById("studentEmergency").innerText=emergency || "০১৭১০-২২২২২২";
-document.getElementById("studentFather").innerText=father || "মোঃ সফিউল আজম খান";
-document.getElementById("studentMother").innerText=mother || "মোসাঃ শাহনাজ পারভীন";
-document.getElementById("studentAddress").innerText=address || "রাজাপুর, ঝালকাঠি";
-document.getElementById("studentBlood").innerText="ব্লাড গ্রুপ: "+(blood || "B+");
+const hasUserData =
+name || roll || studentClass || subject || session || expiry ||
+mobile || emergency || father || mother || address || blood;
+
+document.getElementById("studentName").innerText=hasUserData ? name : "আব্দুল্লাহ-আল নোমান";
+document.getElementById("studentRoll").innerText=hasUserData ? roll : "১৯২৬১১১";
+document.getElementById("studentClass").innerText=hasUserData ? studentClass : "স্নাতক (সম্মান)";
+document.getElementById("studentSubject").innerText=hasUserData ? subject : "ব্যবস্থাপনা বিভাগ";
+document.getElementById("studentSession").innerText=hasUserData ? session : "২০১৯-২০";
+document.getElementById("studentExpiry").innerText=hasUserData ? expiry : "ডিসেম্বর ২০২৭";
+document.getElementById("studentMobile").innerText=hasUserData ? mobile : "০১৯৩০-১১১১১১";
+document.getElementById("studentEmergency").innerText=hasUserData ? emergency : "০১৭১০-২২২২২২";
+document.getElementById("studentFather").innerText=hasUserData ? father : "মোঃ সফিউল আজম খান";
+document.getElementById("studentMother").innerText=hasUserData ? mother : "মোসাঃ শাহনাজ পারভীন";
+document.getElementById("studentAddress").innerText=hasUserData ? address : "রাজাপুর, ঝালকাঠি";
+document.getElementById("studentBlood").innerText=hasUserData ? "ব্লাড গ্রুপ: "+blood : "ব্লাড গ্রুপ: B+";
 
 document.querySelector(".header-text h1").innerText=
 collegeBangla || "বরিশাল সরকারি কলেজ, বরিশাল";
@@ -966,14 +970,17 @@ appData.settings.defaultTheme ||
 
 setTheme(rememberedTheme);
 
-loadDatabase(appData).then(()=>{
 updateLogoMode();
 updateCard();
+
+loadDatabase(appData).then(()=>{
+updateLogoMode();
 });
 
 </script>
 
 <script src="js/dark-mode-user.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 </body>
 </html>
