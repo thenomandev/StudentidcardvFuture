@@ -123,5 +123,7 @@ window.deleteUploadedImage=function(field){
 window.restoreUploadPreview=function(field,url){
   if(url){
     showUI(field,url);
+  }else{
+    hideUI(field);
   }
 };
