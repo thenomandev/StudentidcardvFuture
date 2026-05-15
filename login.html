@@ -179,6 +179,21 @@ h2{
 font-size:30px;
 }
 }
+
+@keyframes shakeError{
+0%{transform:translateX(0);}
+20%{transform:translateX(-8px);}
+40%{transform:translateX(8px);}
+60%{transform:translateX(-6px);}
+80%{transform:translateX(6px);}
+100%{transform:translateX(0);}
+}
+
+.shake-error{
+animation: shakeError .45s ease;
+border-color:#ef4444 !important;
+box-shadow:0 0 0 4px rgba(239,68,68,.12) !important;
+}
 </style>
 </head>
 
@@ -233,8 +248,13 @@ window.login = async function () {
     }, 700);
 
   } catch (err) {
-    email.style.borderColor = "#ef4444";
-    password.style.borderColor = "#ef4444";
+    email.classList.add("shake-error");
+password.classList.add("shake-error");
+
+setTimeout(()=>{
+email.classList.remove("shake-error");
+password.classList.remove("shake-error");
+},500);
 
     if (err.code === "auth/invalid-credential") {
       showToast("Incorrect email or password", "error");
