@@ -911,28 +911,12 @@ document.body.style.background="linear-gradient(135deg,#e0f2f1,#b2dfdb,#80cbc4)"
 
 window.downloadPDF = function(){
 
-const frontCard=document.querySelectorAll(".id-card")[0];
-const backCard=document.querySelectorAll(".id-card")[1];
+updateCard();
 
-const wrapper=document.createElement("div");
-
-wrapper.style.background="#ffffff";
-wrapper.style.padding="20px";
-wrapper.style.display="flex";
-wrapper.style.flexDirection="column";
-wrapper.style.alignItems="center";
-
-const frontClone=frontCard.cloneNode(true);
-const backClone=backCard.cloneNode(true);
-
-frontClone.style.marginBottom="40px";
-frontClone.style.pageBreakAfter="always";
-
-wrapper.appendChild(frontClone);
-wrapper.appendChild(backClone);
+const cards = document.querySelectorAll(".id-card");
 
 html2pdf().set({
-margin:0,
+margin:10,
 filename:"Student-ID-Card.pdf",
 image:{type:"jpeg",quality:1},
 html2canvas:{
@@ -946,7 +930,8 @@ unit:"mm",
 format:"a4",
 orientation:"portrait"
 }
-}).from(wrapper).save();
+}).from(cards).save();
+
 }
 
 window.resetAdjust = function(){
