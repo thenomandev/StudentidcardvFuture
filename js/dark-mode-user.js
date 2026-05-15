@@ -208,7 +208,6 @@ filter:none !important;
 visibility:visible !important;
 }
 
-body.dark-mode .student-name,
 body.dark-mode .info-row,
 body.dark-mode .info-row div,
 body.dark-mode .back-row,
