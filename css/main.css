@@ -123,19 +123,21 @@ position:absolute;
 left:30px;
 top:40px;
 background:white;
-padding:8px;
 border-radius:8px;
 display:flex;
 align-items:center;
 justify-content:center;
-width:35px;
-height:35px;
+width:42px;
+height:42px;
+padding:0;
+overflow:hidden;
+box-sizing:border-box;
 z-index:5;
 }
 
 .logo img{
-width:140%;
-height:140%;
+width:95%;
+height:95%;
 object-fit:contain;
 display:block;
 }
