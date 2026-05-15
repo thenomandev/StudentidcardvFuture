@@ -61,6 +61,12 @@ document.getElementById("transparentLogo").value=data.transparentLogo || "";
 document.getElementById("whiteLogo").value=data.whiteLogo || "";
 document.getElementById("principalSignature").value=data.principalSignature || "";
 document.getElementById("watermark").value=data.watermark || "";
+
+restoreUploadPreview("transparentLogo","");
+restoreUploadPreview("whiteLogo","");
+restoreUploadPreview("principalSignature","");
+restoreUploadPreview("watermark","");
+
 restoreUploadPreview("transparentLogo",data.transparentLogo || "");
 restoreUploadPreview("whiteLogo",data.whiteLogo || "");
 restoreUploadPreview("principalSignature",data.principalSignature || "");
