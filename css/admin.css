@@ -315,3 +315,29 @@ width:100%;
 margin:6px 0;
 }
 }
+
+#collegeSelect{
+appearance:none;
+-webkit-appearance:none;
+padding-right:50px;
+}
+
+#collegeSelect::-webkit-search-cancel-button{
+-webkit-appearance:none;
+appearance:none;
+height:22px;
+width:22px;
+cursor:pointer;
+border-radius:50%;
+background-size:22px 22px;
+background-repeat:no-repeat;
+background-position:center;
+}
+
+body:not(.dark-mode) #collegeSelect::-webkit-search-cancel-button{
+background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle fill='%23333' cx='12' cy='12' r='12'/><path stroke='white' stroke-width='2.5' stroke-linecap='round' d='M7 7L17 17M17 7L7 17'/></svg>");
+}
+
+body.dark-mode #collegeSelect::-webkit-search-cancel-button{
+background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle fill='%23ffffff' cx='12' cy='12' r='12'/><path stroke='%23000' stroke-width='2.5' stroke-linecap='round' d='M7 7L17 17M17 7L7 17'/></svg>");
+}
