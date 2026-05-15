@@ -942,8 +942,6 @@ document.body.style.background="linear-gradient(135deg,#e0f2f1,#b2dfdb,#80cbc4)"
 
 window.downloadPDF = function(){
 
-updateCard();
-
 const frontCard=document.querySelectorAll(".id-card")[0];
 const backCard=document.querySelectorAll(".id-card")[1];
 
@@ -1007,7 +1005,6 @@ setTheme(rememberedTheme);
 loadDatabase(appData).then(()=>{
 if(document.getElementById("collegeSearch").value){
 updateLogoMode();
-updateCard();
 }
 });
 
