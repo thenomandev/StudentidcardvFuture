@@ -62,17 +62,10 @@ document.getElementById("whiteLogo").value=data.whiteLogo || "";
 document.getElementById("principalSignature").value=data.principalSignature || "";
 document.getElementById("watermark").value=data.watermark || "";
 
-document.getElementById("transparentLogoPreview").src="";
-document.getElementById("transparentLogoPreview").style.display="none";
-
-document.getElementById("whiteLogoPreview").src="";
-document.getElementById("whiteLogoPreview").style.display="none";
-
-document.getElementById("principalSignaturePreview").src="";
-document.getElementById("principalSignaturePreview").style.display="none";
-
-document.getElementById("watermarkPreview").src="";
-document.getElementById("watermarkPreview").style.display="none";
+clearUploadPreview("transparentLogo");
+clearUploadPreview("whiteLogo");
+clearUploadPreview("principalSignature");
+clearUploadPreview("watermark");
 
 restoreUploadPreview("transparentLogo",data.transparentLogo || "");
 restoreUploadPreview("whiteLogo",data.whiteLogo || "");
