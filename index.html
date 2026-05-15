@@ -977,11 +977,37 @@ appData.settings.defaultTheme ||
 
 setTheme(rememberedTheme);
 
-updateLogoMode();
-
 loadDatabase(appData).then(()=>{
+
+const defaultCollege = appData.colleges["barishalgovtcollege"] || Object.values(appData.colleges)[0];
+
+if(defaultCollege){
+
+document.getElementById("collegeBanglaInput").value = defaultCollege.bangla || "";
+document.getElementById("collegeEnglishInput").value = defaultCollege.english || "";
+document.getElementById("collegeEstInput").value = defaultCollege.established || "";
+document.getElementById("collegePhoneInput").value = defaultCollege.phone || "";
+document.getElementById("collegeEmailInput").value = defaultCollege.email || "";
+document.getElementById("collegeWebsiteInput").value = defaultCollege.website || "";
+
+document.getElementById("collegeLogo").src =
+defaultCollege.transparentLogo || defaultCollege.logo || "";
+
+document.getElementById("principalSignature").src =
+defaultCollege.signature || "";
+
+const cards=document.querySelectorAll(".id-card");
+
+cards.forEach(card=>{
+card.style.backgroundImage = defaultCollege.watermark
+? `url(${defaultCollege.watermark})`
+: "none";
+});
+}
+
 updateLogoMode();
 updateCard();
+
 });
 
 </script>
