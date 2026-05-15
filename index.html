@@ -341,7 +341,8 @@ src="https://raw.githubusercontent.com/thenomandev/media/main/Student%20card/Pri
 </div>
 
 <div class="qr">
-<div id="qrCode"></div>
+<img id="qrCode"
+src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=StudentID">
 </div>
 
 <div class="college">
@@ -413,7 +414,7 @@ title="Email">
 </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script type="module">
 import { loadDatabase } from "./js/college-service.js";
@@ -504,17 +505,6 @@ logoMode==="transparent"
 
 document.getElementById("principalSignature").src=college.signature;
 
-const cards=document.querySelectorAll(".id-card");
-
-cards.forEach(card=>{
-card.style.backgroundImage = college.watermark
-? `url(${college.watermark})`
-: "none";
-
-card.style.backgroundSize = "cover";
-card.style.backgroundPosition = "center";
-});
-
 updateCard();
 }
 
@@ -583,22 +573,18 @@ let collegePhone=document.getElementById("collegePhoneInput").value;
 let collegeEmail=document.getElementById("collegeEmailInput").value;
 let collegeWebsite=document.getElementById("collegeWebsiteInput").value;
 
-const hasUserData =
-name || roll || studentClass || subject || session || expiry ||
-mobile || emergency || father || mother || address || blood;
-
-document.getElementById("studentName").innerText=hasUserData ? name : "আব্দুল্লাহ-আল নোমান";
-document.getElementById("studentRoll").innerText=hasUserData ? roll : "১৯২৬১১১";
-document.getElementById("studentClass").innerText=hasUserData ? studentClass : "স্নাতক (সম্মান)";
-document.getElementById("studentSubject").innerText=hasUserData ? subject : "ব্যবস্থাপনা বিভাগ";
-document.getElementById("studentSession").innerText=hasUserData ? session : "২০১৯-২০";
-document.getElementById("studentExpiry").innerText=hasUserData ? expiry : "ডিসেম্বর ২০২৭";
-document.getElementById("studentMobile").innerText=hasUserData ? mobile : "০১৯৩০-১১১১১১";
-document.getElementById("studentEmergency").innerText=hasUserData ? emergency : "০১৭১০-২২২২২২";
-document.getElementById("studentFather").innerText=hasUserData ? father : "মোঃ সফিউল আজম খান";
-document.getElementById("studentMother").innerText=hasUserData ? mother : "মোসাঃ শাহনাজ পারভীন";
-document.getElementById("studentAddress").innerText=hasUserData ? address : "রাজাপুর, ঝালকাঠি";
-document.getElementById("studentBlood").innerText=hasUserData ? "ব্লাড গ্রুপ: "+blood : "ব্লাড গ্রুপ: B+";
+document.getElementById("studentName").innerText=name;
+document.getElementById("studentRoll").innerText=roll;
+document.getElementById("studentClass").innerText=studentClass;
+document.getElementById("studentSubject").innerText=subject;
+document.getElementById("studentSession").innerText=session;
+document.getElementById("studentExpiry").innerText=expiry;
+document.getElementById("studentMobile").innerText=mobile;
+document.getElementById("studentEmergency").innerText=emergency;
+document.getElementById("studentFather").innerText=father;
+document.getElementById("studentMother").innerText=mother;
+document.getElementById("studentAddress").innerText=address;
+document.getElementById("studentBlood").innerText="ব্লাড গ্রুপ: "+blood;
 
 document.querySelector(".header-text h1").innerText=
 collegeBangla || "বরিশাল সরকারি কলেজ, বরিশাল";
@@ -608,20 +594,13 @@ collegeEnglish || "Barishal Govt. College, Barishal";
 
 document.querySelector(".estd").innerText=
 collegeEst ? "স্থাপিত: "+collegeEst+" খ্রি." : "স্থাপিত: ১৯৬৩ খ্রি.";
-
 document.querySelector(".college h2").innerText=collegeBangla || "বরিশাল সরকারি কলেজ, বরিশাল";
-document.querySelectorAll(".college p")[0].innerText="ফোন: "+(collegePhone || "০২৪৭৮৮-৬৪৬১৪");
-document.querySelectorAll(".college p")[1].innerText="ই-মেইল: "+(collegeEmail || "principal_gbc@yahoo.com");
-document.querySelector(".footer").innerText="ওয়েবসাইট: "+(collegeWebsite || "www.gbc.gov.bd");
+document.querySelectorAll(".college p")[0].innerText="ফোন: "+collegePhone;
+document.querySelectorAll(".college p")[1].innerText="ই-মেইল: "+collegeEmail;
+document.querySelector(".footer").innerText="ওয়েবসাইট: "+collegeWebsite;
 
-const qrBox = document.getElementById("qrCode");
-qrBox.innerHTML = "";
-
-new QRCode(qrBox,{
-text: qrText || "StudentID",
-width: 100,
-height: 100
-});
+document.getElementById("qrCode").src=
+"https://api.qrserver.com/v1/create-qr-code/?size=100x100&data="+encodeURIComponent(qrText || "StudentID");
 }
 
 document.getElementById("photoInput").addEventListener("change",function(e){
@@ -911,12 +890,28 @@ document.body.style.background="linear-gradient(135deg,#e0f2f1,#b2dfdb,#80cbc4)"
 
 window.downloadPDF = function(){
 
-updateCard();
+const frontCard=document.querySelectorAll(".id-card")[0];
+const backCard=document.querySelectorAll(".id-card")[1];
 
-const cards = document.querySelectorAll(".id-card");
+const wrapper=document.createElement("div");
+
+wrapper.style.background="#ffffff";
+wrapper.style.padding="20px";
+wrapper.style.display="flex";
+wrapper.style.flexDirection="column";
+wrapper.style.alignItems="center";
+
+const frontClone=frontCard.cloneNode(true);
+const backClone=backCard.cloneNode(true);
+
+frontClone.style.marginBottom="40px";
+frontClone.style.pageBreakAfter="always";
+
+wrapper.appendChild(frontClone);
+wrapper.appendChild(backClone);
 
 html2pdf().set({
-margin:10,
+margin:0,
 filename:"Student-ID-Card.pdf",
 image:{type:"jpeg",quality:1},
 html2canvas:{
@@ -930,8 +925,7 @@ unit:"mm",
 format:"a4",
 orientation:"portrait"
 }
-}).from(cards).save();
-
+}).from(wrapper).save();
 }
 
 window.resetAdjust = function(){
@@ -955,9 +949,6 @@ appData.settings.defaultTheme ||
 
 setTheme(rememberedTheme);
 
-updateLogoMode();
-updateCard();
-
 loadDatabase(appData).then(()=>{
 updateLogoMode();
 });
@@ -965,7 +956,6 @@ updateLogoMode();
 </script>
 
 <script src="js/dark-mode-user.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 </body>
 </html>
