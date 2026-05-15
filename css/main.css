@@ -343,16 +343,32 @@ margin-bottom:7px;
 }
 
 .qr{
-text-align:center;
 margin-top:14px;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:120px;
 }
 
-.qr img{
+.qr #qrCode{
 width:100px;
 height:100px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.15);
-object-fit:contain;
+background:white;
+padding:8px;
+border-radius:14px;
+box-shadow:0 8px 22px rgba(0,0,0,0.18);
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+.qr #qrCode img,
+.qr #qrCode canvas{
+width:100% !important;
+height:100% !important;
+display:block;
+border-radius:8px;
 }
 
 .college{
