@@ -491,6 +491,20 @@ if(!preset || !appData.colleges[preset]) return;
 let college = appData.colleges[preset];
 let logoMode = document.getElementById("logoMode").value;
 
+document.getElementById("nameInput").value="";
+document.getElementById("rollInput").value="";
+document.getElementById("classInput").value="";
+document.getElementById("subjectInput").value="";
+document.getElementById("sessionInput").value="";
+document.getElementById("expiryInput").value="";
+document.getElementById("mobileInput").value="";
+document.getElementById("emergencyInput").value="";
+document.getElementById("fatherInput").value="";
+document.getElementById("motherInput").value="";
+document.getElementById("addressInput").value="";
+document.getElementById("bloodInput").value="";
+document.getElementById("qrInput").value="";
+
 document.getElementById("collegeBanglaInput").value=college.bangla;
 document.getElementById("collegeEnglishInput").value=college.english;
 document.getElementById("collegeEstInput").value=college.established;
@@ -504,6 +518,17 @@ logoMode==="transparent"
 : college.logo;
 
 document.getElementById("principalSignature").src=college.signature;
+
+const cards=document.querySelectorAll(".id-card");
+
+cards.forEach(card=>{
+card.style.backgroundImage = college.watermark
+? `url(${college.watermark})`
+: "none";
+
+card.style.backgroundSize="cover";
+card.style.backgroundPosition="center";
+});
 
 updateCard();
 }
@@ -890,6 +915,8 @@ document.body.style.background="linear-gradient(135deg,#e0f2f1,#b2dfdb,#80cbc4)"
 
 window.downloadPDF = function(){
 
+updateCard();
+
 const frontCard=document.querySelectorAll(".id-card")[0];
 const backCard=document.querySelectorAll(".id-card")[1];
 
@@ -917,6 +944,7 @@ image:{type:"jpeg",quality:1},
 html2canvas:{
 scale:4,
 useCORS:true,
+allowTaint:true,
 scrollY:0,
 backgroundColor:"#ffffff"
 },
@@ -949,8 +977,11 @@ appData.settings.defaultTheme ||
 
 setTheme(rememberedTheme);
 
+updateLogoMode();
+
 loadDatabase(appData).then(()=>{
 updateLogoMode();
+updateCard();
 });
 
 </script>
