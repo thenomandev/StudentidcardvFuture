@@ -319,14 +319,14 @@ margin:6px 0;
 #collegeSelect{
 appearance:none;
 -webkit-appearance:none;
-padding-right:50px;
+padding-right:42px;
 }
 
 #collegeSelect::-webkit-search-cancel-button{
 -webkit-appearance:none;
 appearance:none;
-height:22px;
-width:22px;
+height:18px;
+width:18px;
 cursor:pointer;
 border-radius:50%;
 background-size:22px 22px;
