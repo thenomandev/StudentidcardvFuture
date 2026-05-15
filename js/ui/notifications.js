@@ -5,8 +5,8 @@ export function showToast(message, type = "success") {
     container = document.createElement("div");
     container.id = "toastContainer";
     container.style.position = "fixed";
-    container.style.top = "20px";
-    container.style.right = "20px";
+    container.style.top = "95px";
+    container.style.transform = "translateX(-50%)";
     container.style.zIndex = "99999";
     container.style.display = "flex";
     container.style.flexDirection = "column";
@@ -30,7 +30,8 @@ export function showToast(message, type = "success") {
   toast.style.fontWeight = "600";
   toast.style.fontSize = "14px";
   toast.style.boxShadow = "0 12px 35px rgba(0,0,0,.35)";
-  toast.style.transform = "translateX(120%)";
+  toast.style.transform = "translateY(-20px)";
+toast.style.opacity = "0";
   toast.style.transition = "all .35s ease";
   toast.style.maxWidth = "320px";
   toast.style.wordBreak = "break-word";
@@ -40,11 +41,13 @@ export function showToast(message, type = "success") {
   container.appendChild(toast);
 
   requestAnimationFrame(() => {
-    toast.style.transform = "translateX(0)";
+    toast.style.transform = "translateY(0)";
+toast.style.opacity = "1";
   });
 
   setTimeout(() => {
-    toast.style.transform = "translateX(120%)";
+    toast.style.transform = "translateY(-20px)";
+toast.style.opacity = "0";
     setTimeout(() => toast.remove(), 350);
   }, 3000);
 }
