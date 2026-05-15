@@ -74,8 +74,14 @@ color:white;
 }
 
 .logoutBtn{
-background:#111827;
-color:white;
+background: linear-gradient(135deg,#dc2626,#ef4444);
+color: #ffffff;
+border: none;
+padding: 13px 18px;
+border-radius: 14px;
+font-weight: 700;
+cursor: pointer;
+box-shadow: 0 10px 25px rgba(239,68,68,.35);
 }
 
 .college-dropdown-box{
