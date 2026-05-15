@@ -62,10 +62,9 @@ document.getElementById("whiteLogo").value=data.whiteLogo || "";
 document.getElementById("principalSignature").value=data.principalSignature || "";
 document.getElementById("watermark").value=data.watermark || "";
 
-clearUploadPreview("transparentLogo");
-clearUploadPreview("whiteLogo");
-clearUploadPreview("principalSignature");
-clearUploadPreview("watermark");
+["transparentLogo","whiteLogo","principalSignature","watermark"].forEach(id=>{
+restoreUploadPreview(id,"");
+});
 
 restoreUploadPreview("transparentLogo",data.transparentLogo || "");
 restoreUploadPreview("whiteLogo",data.whiteLogo || "");
