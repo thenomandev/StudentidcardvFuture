@@ -5,12 +5,17 @@ export function showToast(message, type = "success") {
     container = document.createElement("div");
     container.id = "toastContainer";
     container.style.position = "fixed";
-    container.style.top = "95px";
+    container.style.top = "20px";
+    container.style.left = "50%";
     container.style.transform = "translateX(-50%)";
-    container.style.zIndex = "99999";
+    container.style.zIndex = "9999999";
     container.style.display = "flex";
     container.style.flexDirection = "column";
+    container.style.alignItems = "center";
     container.style.gap = "12px";
+    container.style.width = "calc(100% - 32px)";
+    container.style.maxWidth = "420px";
+    container.style.pointerEvents = "none";
     document.body.appendChild(container);
   }
 
@@ -31,10 +36,12 @@ export function showToast(message, type = "success") {
   toast.style.fontSize = "14px";
   toast.style.boxShadow = "0 12px 35px rgba(0,0,0,.35)";
   toast.style.transform = "translateY(-20px)";
-toast.style.opacity = "0";
+  toast.style.opacity = "0";
   toast.style.transition = "all .35s ease";
-  toast.style.maxWidth = "320px";
+  toast.style.width = "100%";
+  toast.style.textAlign = "center";
   toast.style.wordBreak = "break-word";
+  toast.style.pointerEvents = "auto";
 
   toast.textContent = message;
 
@@ -42,12 +49,12 @@ toast.style.opacity = "0";
 
   requestAnimationFrame(() => {
     toast.style.transform = "translateY(0)";
-toast.style.opacity = "1";
+    toast.style.opacity = "1";
   });
 
   setTimeout(() => {
     toast.style.transform = "translateY(-20px)";
-toast.style.opacity = "0";
+    toast.style.opacity = "0";
     setTimeout(() => toast.remove(), 350);
   }, 3000);
 }
@@ -59,7 +66,7 @@ export function showConfirm(title, message) {
     overlay.style.inset = "0";
     overlay.style.background = "rgba(0,0,0,.6)";
     overlay.style.backdropFilter = "blur(8px)";
-    overlay.style.zIndex = "99999";
+    overlay.style.zIndex = "9999998";
     overlay.style.display = "flex";
     overlay.style.alignItems = "center";
     overlay.style.justifyContent = "center";
