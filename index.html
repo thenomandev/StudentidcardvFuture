@@ -583,30 +583,32 @@ let collegePhone=document.getElementById("collegePhoneInput").value;
 let collegeEmail=document.getElementById("collegeEmailInput").value;
 let collegeWebsite=document.getElementById("collegeWebsiteInput").value;
 
-document.getElementById("studentName").innerText=name;
-document.getElementById("studentRoll").innerText=roll;
-document.getElementById("studentClass").innerText=studentClass;
-document.getElementById("studentSubject").innerText=subject;
-document.getElementById("studentSession").innerText=session;
-document.getElementById("studentExpiry").innerText=expiry;
-document.getElementById("studentMobile").innerText=mobile;
-document.getElementById("studentEmergency").innerText=emergency;
-document.getElementById("studentFather").innerText=father;
-document.getElementById("studentMother").innerText=mother;
-document.getElementById("studentAddress").innerText=address;
-document.getElementById("studentBlood").innerText="ব্লাড গ্রুপ: "+blood;
+document.getElementById("studentName").innerText=name || "আব্দুল্লাহ-আল নোমান";
+document.getElementById("studentRoll").innerText=roll || "১৯২৬১১১";
+document.getElementById("studentClass").innerText=studentClass || "স্নাতক (সম্মান)";
+document.getElementById("studentSubject").innerText=subject || "ব্যবস্থাপনা বিভাগ";
+document.getElementById("studentSession").innerText=session || "২০১৯-২০";
+document.getElementById("studentExpiry").innerText=expiry || "ডিসেম্বর ২০২৭";
+document.getElementById("studentMobile").innerText=mobile || "০১৯৩০-১১১১১১";
+document.getElementById("studentEmergency").innerText=emergency || "০১৭১০-২২২২২২";
+document.getElementById("studentFather").innerText=father || "মোঃ সফিউল আজম খান";
+document.getElementById("studentMother").innerText=mother || "মোসাঃ শাহনাজ পারভীন";
+document.getElementById("studentAddress").innerText=address || "রাজাপুর, ঝালকাঠি";
+document.getElementById("studentBlood").innerText="ব্লাড গ্রুপ: "+(blood || "B+");
 
-document.querySelector(".header-text h1").innerText=collegeBangla;
+document.querySelector(".header-text h1").innerText=
+collegeBangla || "বরিশাল সরকারি কলেজ, বরিশাল";
 
-document.querySelector(".header-text p").innerText=collegeEnglish;
+document.querySelector(".header-text p").innerText=
+collegeEnglish || "Barishal Govt. College, Barishal";
 
 document.querySelector(".estd").innerText=
-collegeEst ? "স্থাপিত: "+collegeEst+" খ্রি." : "";
+collegeEst ? "স্থাপিত: "+collegeEst+" খ্রি." : "স্থাপিত: ১৯৬৩ খ্রি.";
 
-document.querySelector(".college h2").innerText=collegeBangla;
-document.querySelectorAll(".college p")[0].innerText="ফোন: "+collegePhone;
-document.querySelectorAll(".college p")[1].innerText="ই-মেইল: "+collegeEmail;
-document.querySelector(".footer").innerText="ওয়েবসাইট: "+collegeWebsite;
+document.querySelector(".college h2").innerText=collegeBangla || "বরিশাল সরকারি কলেজ, বরিশাল";
+document.querySelectorAll(".college p")[0].innerText="ফোন: "+(collegePhone || "০২৪৭৮৮-৬৪৬১৪");
+document.querySelectorAll(".college p")[1].innerText="ই-মেইল: "+(collegeEmail || "principal_gbc@yahoo.com");
+document.querySelector(".footer").innerText="ওয়েবসাইট: "+(collegeWebsite || "www.gbc.gov.bd");
 
 const qrBox = document.getElementById("qrCode");
 qrBox.innerHTML = "";
