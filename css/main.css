@@ -344,28 +344,15 @@ margin-bottom:7px;
 
 .qr{
 text-align:center;
-margin-top:12px;
-display:flex;
-justify-content:center;
-align-items:center;
+margin-top:14px;
 }
 
-.qr #qrCode{
-width:88px;
-height:88px;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-.qr #qrCode canvas{
-width:88px !important;
-height:88px !important;
-border-radius:8px;
-box-shadow:none;
-background:transparent !important;
-display:block;
-image-rendering:pixelated;
+.qr img{
+width:100px;
+height:100px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+object-fit:contain;
 }
 
 .college{
